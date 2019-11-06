@@ -5,15 +5,24 @@ export default function BatchesList(props) {
   if (!props.batches) return "Loading";
 
   return (
-    <div>
+    <div className="w3-row-padding w3-margin">
       {props.batches.map(batch => {
         return (
-          <li key={batch.id}>
-            <Link to={`/batches/${batch.id}`}>Batch #{batch.batch_number}</Link>
-            <p>{Object.keys(batch.students).length} Students</p>
-          </li>
+          <div className="w3-third w3-margin-bottom">
+            <ul className="w3-ul w3-border w3-center w3-hover-shadow">
+              <li key={batch.id} className="w3-blue-grey w3-xlarge w3-padding-32">
+                <Link to={`/batches/${batch.id}`}>Batch #{batch.batch_number}</Link>
+              </li>
+              {!batch.students ? null : <li className="w3-padding-16">{Object.keys(batch.students).length} Students</li>}
+
+              <li className="w3-padding-16">Start date : {batch.start_date}</li>
+              <li className="w3-padding-16">End date : {batch.end_date}</li>
+
+            </ul>
+          </div>
         );
       })}
+
     </div>
   );
 }
