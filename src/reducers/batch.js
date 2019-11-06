@@ -8,7 +8,7 @@ export default (state = {}, action = {}) => {
     case STUDENT_CREATE_SUCCESS:
       return {
         ...state,
-        students: [...state.students, action.payload]
+        students: [...state.students, { ...action.payload, evaluations: [] }]
       }
     case STUDENT_DELETE_SUCCESS:
       return {

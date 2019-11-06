@@ -10,7 +10,7 @@ function StudentDetail(props) {
   return (
 
     <div>
-      <h1>{props.student.full_name}</h1>
+      <h1>{props.student.first_name}  {props.student.last_name}</h1>
       <h3>Batch # {props.student.batch.batch_number}</h3>
       <h3>{props.student.evaluations.map(evaluation => evaluation.color)}</h3>
       <button onClick={props.onDelete}>DELETE</button>

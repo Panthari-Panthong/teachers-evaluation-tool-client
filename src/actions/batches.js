@@ -59,11 +59,11 @@ const batchCreateSuccess = batch => ({
 });
 
 export const createBatch = data => (dispatch, getState) => {
-  // const token = getState().auth;
-
+  const token = getState().auth;
+  // console.log("TOKEN", token)
   request
     .post(`${url}/batches`)
-    // .set("Authorization", `Bearer ${token}`)
+    .set("Authorization", `Bearer ${token}`)
     .send(data)
     .then(response => {
       dispatch(batchCreateSuccess(response.body));

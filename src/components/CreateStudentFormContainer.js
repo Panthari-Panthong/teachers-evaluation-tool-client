@@ -5,7 +5,8 @@ import StudentForm from "./StudentForm";
 
 class CreateStudentFormContainer extends React.Component {
   state = {
-    full_name: "",
+    first_name: "",
+    last_name: "",
     picture: ""
   };
 
@@ -23,7 +24,8 @@ class CreateStudentFormContainer extends React.Component {
       batchId: this.props.batchId
     });
     this.setState({
-      full_name: "",
+      first_name: "",
+      last_name: "",
       picture: ""
     });
   };

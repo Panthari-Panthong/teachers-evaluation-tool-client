@@ -5,6 +5,7 @@ import student from './student'
 import students from './students'
 import auth from "./auth";
 import signup from './signup'
+import evaluations from './evaluations'
 
 export default combineReducers({
   batches,
@@ -12,5 +13,6 @@ export default combineReducers({
   student,
   students,
   auth,
-  signup
+  signup,
+  evaluations
 })

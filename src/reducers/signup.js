@@ -1,6 +1,6 @@
 import { SIGNUP_SUCCESS } from '../actions/teacher'
 
-export default (state = {}, action = {}) => {
+export default (state = "", action = {}) => {
   switch (action.type) {
     case SIGNUP_SUCCESS:
       // console.log('From reducer', action.payload)

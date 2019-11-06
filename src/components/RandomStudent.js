@@ -31,8 +31,8 @@ class RandomStudent extends Component {
     // console.log(this.props)
     const { redAmout, yellowAmout, greenAmout } = this.props
     return (
-      <div>
-        <button onClick={() => this.randomOne(redAmout, yellowAmout, greenAmout)}>ASK A QUESTION</button>
+      <div className="w3-container w3-center w3-margin">
+        <button className="w3-button w3-red" onClick={() => this.randomOne(redAmout, yellowAmout, greenAmout)}>ASK A QUESTION</button>
       </div>
     );
   }

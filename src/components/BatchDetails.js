@@ -8,13 +8,14 @@ function BatchDetails(props) {
   if (!props.batch.students) return "Loading";
 
   const students = props.batch.students.map(student => {
-    if (student.evaluations.length > 0) {
+    if (student.evaluations.length > 0)
       return {
         evaluation: student.evaluations.sort((a, b) => {
           return a.id - b.id
-        })[student.evaluations.length - 1]
-      }
-    } return {
+        })[student.evaluations.length - 1],
+        student: student.id
+      };
+    return {
       evaluation: "undefined",
       student
     }
@@ -22,6 +23,7 @@ function BatchDetails(props) {
 
 
   //Filter out student that have that color
+  //const noColor = students.filter(evaluation => evaluation.evaluations = "undefined")
   const greenAmout = students.filter(evaluationGreen => evaluationGreen.evaluation.color === 'green')
   const yellowAmout = students.filter(evaluationYellow => evaluationYellow.evaluation.color === 'yellow')
   const redAmout = students.filter(evaluationRed => evaluationRed.evaluation.color === 'red')
@@ -35,22 +37,36 @@ function BatchDetails(props) {
   return (
     <div>
       <h1>Batch # {props.batch.batch_number}</h1>
-      <div className="w3-light-grey">
+      {!isNaN(PercentGreen && PercentYellow && PercentRed) ? <div className="w3-light-grey">
         <div className="w3-container w3-green w3-center" style={{ width: Math.floor(PercentGreen) + '%', float: "left" }}>{Math.floor(PercentGreen)}%</div>
         <div className="w3-container w3-yellow w3-center" style={{ width: Math.floor(PercentYellow) + '%', float: "left" }}>{Math.floor(PercentYellow)}%</div>
         <div className="w3-container w3-red w3-center" style={{ width: Math.floor(PercentRed) + '%', float: "left" }}>{Math.floor(PercentRed)}%</div>
-      </div><br />
+      </div>
+        :
+        <div className="w3-light-grey">
+          <div className="w3-container w3-green w3-center" style={{ width: '0%', float: "left" }}>0%</div>
+          <div className="w3-container w3-yellow w3-center" style={{ width: '0%', float: "left" }}>0%</div>
+          <div className="w3-container w3-red w3-center" style={{ width: '0%', float: "left" }}>0%</div>
+        </div>
+      }
 
-      <ul>
+      <div className="w3-row-padding w3-margin-top">
         {props.batch.students.map(student => {
           return (
-            <li key={student.id}>
-              <Link to={`/students/${student.id}`}>{student.full_name} </Link>
-              <p>{!student.evaluations.length === 0 ? null : (student.evaluations.map(evaluation => evaluation.color))[student.evaluations.length - 1]}</p>
-            </li>
+            <div key={student.id} className="w3-third">
+              <div className="w3-card">
+                <h3>
+                  <Link to={`/students/${student.id}`}>{student.first_name} {student.last_name} </Link>
+                </h3>
+                <img src={student.picture} alt={student.first_name} />
+                <div className="w3-container">
+                  <p>{!student.evaluations.length === 0 ? null : (student.evaluations.map(evaluation => evaluation.color))[student.evaluations.length - 1]}</p>
+                </div>
+              </div>
+            </div>
           );
         })}
-      </ul>
+      </div>
       <RandomStudent
         greenAmout={greenAmout}
         yellowAmout={yellowAmout}
