@@ -50,7 +50,7 @@ function BatchDetails(props) {
         </div>
       }
 
-      <div className="w3-row-padding w3-margin-top">
+      <div className="w3-row-padding w3-margin-top w3-center">
         {props.batch.students.map(student => {
           return (
             <div key={student.id} className="w3-third">
@@ -58,9 +58,13 @@ function BatchDetails(props) {
                 <h3>
                   <Link to={`/students/${student.id}`}>{student.first_name} {student.last_name} </Link>
                 </h3>
-                <img src={student.picture} alt={student.first_name} />
+                {!student.picture ?
+                  <img src={"https://www.w3schools.com/howto/img_avatar.png"} alt={student.first_name} style={{ width: "50%" }} />
+                  :
+                  <img src={`${student.picture}`} alt={student.first_name} style={{ width: "50%" }} />
+                }
                 <div className="w3-container">
-                  <p>{!student.evaluations.length === 0 ? null : (student.evaluations.map(evaluation => evaluation.color))[student.evaluations.length - 1]}</p>
+                  <h4 style={{ textTransform: 'uppercase' }}>{!student.evaluations.length === 0 ? null : (student.evaluations.map(evaluation => evaluation.color))[student.evaluations.length - 1]}</h4>
                 </div>
               </div>
             </div>

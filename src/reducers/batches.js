@@ -3,12 +3,11 @@ import {
   BATCH_CREATE_SUCCESS
 } from '../actions/batches'
 
-import { STUDENT_DELETE_SUCCESS } from '../actions/students'
-// import { EVALUATION_CREATE_SUCCESS } from '../actions/evaluations'
+import { STUDENT_DELETE_SUCCESS, STUDENT_CREATE_SUCCESS } from '../actions/students'
 
 
 export default (state = [], action = {}) => {
-  // console.log("STATE", state, "ACTION", action);
+  //console.log("STATE", state, "ACTION", action);
   switch (action.type) {
     case BATCHES_FETCHED:
       return [...state, ...action.payload];
@@ -16,8 +15,15 @@ export default (state = [], action = {}) => {
       return [...state, { ...action.payload }];
     case STUDENT_DELETE_SUCCESS:
       return state.filter(student => student.id !== action.id)
-    // case EVALUATION_CREATE_SUCCESS:
-    //   return state.map(student => student.id === action.evaluation.studentId ? [] : student)
+    case STUDENT_CREATE_SUCCESS:
+      return state.map(batch => {
+        if (batch.id === action.payload.batchId) {
+          return { ...batch, students: [...batch.students, { ...action.payload, evaluations: [] }] }
+        } else {
+          return batch
+        }
+
+      })
     default:
       return state;
   }

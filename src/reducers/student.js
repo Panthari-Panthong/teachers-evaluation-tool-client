@@ -9,6 +9,7 @@ export default (state = {}, action = {}) => {
       return {
         ...state,
         evaluations: [...state.evaluations, action.evaluation]
+
       }
     default:
       return state;

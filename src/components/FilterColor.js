@@ -1,0 +1,30 @@
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+function mapStateToProps(state) {
+  return {
+
+  };
+}
+
+class FilterColor extends Component {
+  render() {
+    return (
+      <div>
+
+      </div>
+    );
+  }
+}
+
+
+function mapStateToProps(state) {
+  return {
+
+  };
+}
+
+
+export default connect(
+  mapStateToProps,
+)(FilterColor);

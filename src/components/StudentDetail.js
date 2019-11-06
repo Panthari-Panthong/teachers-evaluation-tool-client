@@ -9,10 +9,21 @@ function StudentDetail(props) {
 
   return (
 
-    <div>
-      <h1>{props.student.first_name}  {props.student.last_name}</h1>
-      <h3>Batch # {props.student.batch.batch_number}</h3>
-      <h3>{props.student.evaluations.map(evaluation => evaluation.color)}</h3>
+    <div className="w3-container w3-margin">
+      <div className="w3-row">
+        <div className="w3-container w3-third">
+          {!props.student.picture ?
+            <img src={"https://www.w3schools.com/howto/img_avatar.png"} alt="avatar" style={{ width: "80%" }} />
+            :
+            <img src={`${props.student.picture}`} alt={props.student.first_name} style={{ width: "20%" }} />
+          }
+        </div>
+        <div className="w3-container w3-twothird">
+          <h1>{props.student.first_name}  {props.student.last_name}</h1>
+          <h3>Batch # {props.student.batch.batch_number}</h3>
+          <h3>{props.student.evaluations.map(evaluation => evaluation.color)}</h3>
+        </div>
+      </div>
       <button onClick={props.onDelete}>DELETE</button>
       <button>EDIT</button>
       <p>Daily Evaluation for {props.value.date}</p>
