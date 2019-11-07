@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import RandomStudent from './RandomStudent'
-import FilterColor from './FilterColor'
+// import FilterColor from './FilterColor'
 
 function BatchDetails(props) {
   // console.log("PROP", props)
@@ -98,12 +98,12 @@ function BatchDetails(props) {
         yellowAmout={yellowAmout}
         redAmout={redAmout}
       />
-      <FilterColor
+      {/* <FilterColor
         students={students}
         greenAmout={greenAmout}
         yellowAmout={yellowAmout}
         redAmout={redAmout}
-      />
+      /> */}
     </div >
   );
 }

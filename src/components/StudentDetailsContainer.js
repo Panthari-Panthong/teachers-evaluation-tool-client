@@ -203,6 +203,11 @@ class StudentDetailsContainer extends React.Component {
     // console.log("From event update container", this.props.student.id, this.state.formValues)
   }
 
+  cancelEdit = (event) => {
+    event.preventDefault()
+    this.props.history.push(`/batch/${this.props.batch.id}/students`)
+  }
+
   render() {
     return (
       <div>
@@ -220,6 +225,7 @@ class StudentDetailsContainer extends React.Component {
           onEdit={this.onEdit}
           onEditChange={this.onEditChange}
           onEditSubmit={this.onEditSubmit}
+          cancelEdit={this.cancelEdit}
         />
       </div>
     );

@@ -36,6 +36,7 @@ function StudentForm(props) {
             <input className="w3-input" defaultValue={value.picture} name="picture" onChange={props.onEditChange} />
             <br />
             <input className="w3-btn w3-blue-grey" type="submit" />
+            <input className="w3-btn w3-red" type="cancel" defaultValue="Cancel" onClick={props.cancelEdit} />
           </form>
         </div>
       }

@@ -12,7 +12,7 @@ import SignupFormContainer from './components/Signup/SignupFormContainer'
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="w3-light-grey">
         <div className="w3-bar w3-blue-grey">
           <h3 className="w3-bar-item">Student Evaluations</h3>
           {this.props.auth ? <Link to="/signout" className="w3-bar-item w3-button w3-right">Sign out</Link> : null}
