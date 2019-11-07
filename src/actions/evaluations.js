@@ -39,3 +39,20 @@ const evaluationFetchSuccess = evaluations => ({
   evaluations
 })
 
+export const loadEvalution = id => (dispatch, getState) => {
+  // console.log("CAN WE GET THE STATE??", getState());
+  // console.log("ID", id)
+  request(`${url}/evaluations/${id}`)
+    .then(response => {
+      // console.log("WHAT I GET", response.body)
+      dispatch(fetchEvaluationSuccess(response.body));
+    });
+};
+
+export const FETCH_EVALUATION_SUCCESS = "FETCH_EVALUATION_SUCCESS";
+
+const fetchEvaluationSuccess = evaluation => ({
+  type: FETCH_EVALUATION_SUCCESS,
+  payload: evaluation
+});
+

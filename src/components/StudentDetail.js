@@ -3,6 +3,7 @@ import StudentForm from './StudentForm'
 import red from '../img/red.png'
 import green from '../img/green.png'
 import yellow from '../img/yellow.png'
+import { Link } from "react-router-dom";
 
 function StudentDetail(props) {
   if (!props.student) return "Loading";
@@ -16,7 +17,7 @@ function StudentDetail(props) {
     <div>
       {editMode && <StudentForm editMode={props.editMode} values={props.formValues} onEditChange={props.onEditChange} onEditSubmit={props.onEditSubmit} cancelEdit={props.cancelEdit} />}
       {!editMode &&
-        <div className="w3-container w3-margin">
+        <div className="w3-container">
           <div className="w3-row">
             <div className="w3-container w3-third">
               {!props.student.picture ?
@@ -35,11 +36,11 @@ function StudentDetail(props) {
               {/* <h3>{props.student.evaluations.map(evaluation => evaluation.color)}</h3> */}
               {props.student.evaluations.map(evaluation => {
                 if (evaluation.color === "red") {
-                  return <img src={red} alt="red" key={evaluation.id} style={{ width: "5%" }} />
+                  return <Link key={evaluation.id} to={`/batch/${props.student.batchId}/students/${props.student.id}/evaluation/${evaluation.id}`}><img src={red} alt="red" key={evaluation.id} style={{ width: "5%" }} /></Link>
                 } else if (evaluation.color === "green") {
-                  return <img src={green} alt="green" key={evaluation.id} style={{ width: "5%" }} />
+                  return <Link key={evaluation.id} to={`/batch/${props.student.batchId}/students/${props.student.id}/evaluation/${evaluation.id}`}><img src={green} alt="green" key={evaluation.id} style={{ width: "5%" }} /></Link>
                 } else if (evaluation.color === "yellow") {
-                  return <img src={yellow} alt="yellow" key={evaluation.id} style={{ width: "5%" }} />
+                  return <Link key={evaluation.id} to={`/batch/${props.student.batchId}/students/${props.student.id}/evaluation/${evaluation.id}`}><img src={yellow} alt="yellow" key={evaluation.id} style={{ width: "5%" }} /></Link>
                 }
                 return evaluation
               })}
