@@ -1,12 +1,15 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import RandomStudent from './RandomStudent'
+import FilterColor from './FilterColor'
 
 function BatchDetails(props) {
   // console.log("PROP", props)
   if (!props.batch.batch_number) return "Loading";
   if (!props.batch.students) return "Loading";
 
+
+  //get the last color of student
   const students = props.batch.students.map(student => {
     if (student.evaluations.length > 0)
       return {
@@ -20,13 +23,31 @@ function BatchDetails(props) {
       student
     }
   })
-
+  //console.log("STUDENT", students)
 
   //Filter out student that have that color
   //const noColor = students.filter(evaluation => evaluation.evaluations = "undefined")
   const greenAmout = students.filter(evaluationGreen => evaluationGreen.evaluation.color === 'green')
   const yellowAmout = students.filter(evaluationYellow => evaluationYellow.evaluation.color === 'yellow')
   const redAmout = students.filter(evaluationRed => evaluationRed.evaluation.color === 'red')
+  // console.log("STUDENT", greenAmout)
+
+  // const greenStudent = () => {
+  //   greenAmout.map(gStudent => {
+  //     //gStudent.student === props.batch.students.filter(student => console.log("ID", student.id))
+  //     const studentId = gStudent.student
+  //     //console.log(student)
+  //     //console.log(props.batch.students)
+  //     const students = props.batch.students.filter(student => {
+  //       if (student.id === studentId) {
+  //         return [{ student }]
+  //       }
+  //     })
+  //     console.log(students)
+  //   })
+  // }
+
+  //console.log("STUDENT", greenStudent)
 
 
   //Calculate percaentage's colors of student
@@ -71,7 +92,14 @@ function BatchDetails(props) {
           );
         })}
       </div>
+      {/* <button onClick={greenStudent}>green</button> */}
       <RandomStudent
+        greenAmout={greenAmout}
+        yellowAmout={yellowAmout}
+        redAmout={redAmout}
+      />
+      <FilterColor
+        students={students}
         greenAmout={greenAmout}
         yellowAmout={yellowAmout}
         redAmout={redAmout}

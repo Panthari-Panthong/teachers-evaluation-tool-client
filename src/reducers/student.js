@@ -1,4 +1,4 @@
-import { FETCH_STUDENT_SUCCESS } from '../actions/students'
+import { FETCH_STUDENT_SUCCESS, STUDENT_UPDATE_SUCCESS } from '../actions/students'
 import { EVALUATION_CREATE_SUCCESS } from '../actions/evaluations'
 
 export default (state = {}, action = {}) => {
@@ -9,8 +9,9 @@ export default (state = {}, action = {}) => {
       return {
         ...state,
         evaluations: [...state.evaluations, action.evaluation]
-
       }
+    case STUDENT_UPDATE_SUCCESS:
+      return { ...state, ...action.student }
     default:
       return state;
   }

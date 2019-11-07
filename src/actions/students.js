@@ -57,3 +57,22 @@ const studentDelete = id => ({
 })
 
 
+
+export const updateStudent = (id, data) => (dispatch) => {
+  console.log("ID", id, data)
+  request
+    .put(`${url}/students/${id}`)
+    .send(data)
+    .then(response => {
+      console.log("updateStudent", response.body)
+      dispatch(studentUpdate(response.body))
+    })
+    .catch(console.error)
+
+}
+
+export const STUDENT_UPDATE_SUCCESS = 'STUDENT_UPDATE_SUCCESS'
+export const studentUpdate = (student, id) => ({
+  type: 'STUDENT_UPDATE_SUCCESS',
+  student, id
+})
