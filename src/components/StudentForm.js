@@ -2,11 +2,11 @@ import React from 'react';
 
 function StudentForm(props) {
   console.log("PROPS", props)
-  const values = props.values
+  const value = props.values
 
   return (
     <div className="w3-container">
-      {!values ?
+      {!value ?
         <div>
           <div className="w3-container w3-blue-grey">
             <h1>Add student</h1>
@@ -29,11 +29,11 @@ function StudentForm(props) {
           </div>
           <form onSubmit={props.onEditSubmit}>
             <label>Firstname</label>
-            <input className="w3-input" value={values.first_name} name="first_name" onChange={props.onEditChange} />
+            <input className="w3-input" value={value.first_name} name="first_name" onChange={props.onEditChange} />
             <label>Lastname</label>
-            <input className="w3-input" value={values.last_name} name="last_name" onChange={props.onEditChange} />
+            <input className="w3-input" value={value.last_name} name="last_name" onChange={props.onEditChange} />
             <label>Picture</label>
-            <input className="w3-input" value={values.picture} name="picture" onChange={props.onEditChange} />
+            <input className="w3-input" value={value.picture} name="picture" onChange={props.onEditChange} />
             <br />
             <input className="w3-btn w3-blue-grey" type="submit" />
           </form>

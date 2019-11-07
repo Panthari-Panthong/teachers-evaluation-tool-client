@@ -7,7 +7,7 @@ import { createEvaluation, loadEvaluations } from '../actions/evaluations'
 class StudentDetailsContainer extends React.Component {
   state = {
     remark: "",
-    date: new Date().toJSON().slice(0, 10).replace(/-/g, '/'),
+    date: new Date().toJSON().slice(0, 10).replace(/-/g, '-'),
     color: "",
     editMode: false
   }
@@ -34,7 +34,7 @@ class StudentDetailsContainer extends React.Component {
       }
     })
 
-    console.log("FROM EDIT")
+    // console.log("FROM EDIT")
   }
 
   onChange = (event) => {
@@ -45,7 +45,8 @@ class StudentDetailsContainer extends React.Component {
   }
 
 
-  onSubmit = (event) => {
+  onSubmitEva = (event) => {
+    // console.table(this.state);
     event.preventDefault()
     if (this.props.student.evaluations.length === 0) {
       if (this.state.color === "green") {
@@ -69,21 +70,48 @@ class StudentDetailsContainer extends React.Component {
       } else {
         return null
       }
-    } else if (this.props.student.evaluations.map(evaluation => evaluation.date === this.state.date)) {
-      return null
+    } else if (this.state.date) {
+      const studentsDate = this.props.student.evaluations.map(evaluation => evaluation.date)
+      const lastEvalutionDate = studentsDate[studentsDate.length - 1]
+      if (this.state.date === lastEvalutionDate) {
+        console.log("evalutionDate", lastEvalutionDate, this.state.date)
+        return null
+      } else {
+        console.log("evalutionDate", lastEvalutionDate, this.state.date)
+        if (this.state.color === "green") {
+          this.props.createEvaluation({
+            remark: this.state.remark,
+            date: this.state.date,
+            color: this.state.color,
+            studentId: this.props.student.id
+          })
+        } else if (this.state.color === "yellow" || this.state.color === "red") {
+          if (this.state.remark !== "") {
+            this.props.createEvaluation({
+              remark: this.state.remark,
+              date: this.state.date,
+              color: this.state.color,
+              studentId: this.props.student.id
+            })
+          } else {
+            return null
+          }
+        } else {
+          return null
+        }
+      }
     }
+
     this.setState({
       remark: ''
     })
-
-    this.props.history.push(`/batches/${this.props.batch.id}`)
 
   }
 
 
   onEditChange = (event) => {
     // update the formValues property with the new data from the input field
-    console.log("EDIT CHANGE", event.target.value)
+    // console.log("EDIT CHANGE", event.target.value)
     this.setState({
       formValues: {
         ...this.state.formValues,
@@ -108,7 +136,7 @@ class StudentDetailsContainer extends React.Component {
           student={this.props.student}
           onDelete={this.onDelete}
           value={this.state}
-          onSubmit={this.onSubmit}
+          onSubmitEva={this.onSubmitEva}
           onChange={this.onChange}
           //Edit button
           formValues={this.state.formValues}

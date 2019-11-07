@@ -31,13 +31,12 @@ function StudentDetail(props) {
           <button onClick={props.onDelete}>DELETE</button>
           <button onClick={props.onEdit}>EDIT</button>
           <p>Daily Evaluation for {props.value.date}</p>
-          <form onSubmit={props.onSubmit}>
+          <form onSubmit={props.onSubmitEva} >
             <textarea placeholder="Remarks..." name="remark" value={props.value.remark} onChange={props.onChange} />
             <input type="radio" name="color" value="red" onChange={props.onChange} />RED
-        <input type="radio" name="color" value="yellow" onChange={props.onChange} />YELLOW
-        <input type="radio" name="color" value="green" onChange={props.onChange} />GREEN
-        <input type="submit" value="Save" />
-            <input type="submit" value="Save and Next" />
+            <input type="radio" name="color" value="yellow" onChange={props.onChange} />YELLOW
+            <input type="radio" name="color" value="green" onChange={props.onChange} />GREEN
+            <input type="submit" value="Save" />
           </form>
         </div>
       }

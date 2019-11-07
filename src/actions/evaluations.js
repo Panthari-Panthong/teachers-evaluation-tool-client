@@ -3,6 +3,7 @@ import { url } from '../constants'
 
 
 export const createEvaluation = (data) => (dispatch) => {
+  console.log("DATA", data)
   request
     .post(`${url}/evaluations`)
     .send(data)
