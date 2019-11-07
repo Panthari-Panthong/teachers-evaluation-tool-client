@@ -22,7 +22,7 @@ function StudentDetail(props) {
               {!props.student.picture ?
                 <img src={"https://www.w3schools.com/howto/img_avatar.png"} alt="avatar" style={{ width: "80%" }} />
                 :
-                <img src={`${props.student.picture}`} alt={props.student.first_name} style={{ width: "20%" }} />
+                <img src={`${props.student.picture}`} alt={props.student.first_name} style={{ width: "80%" }} />
               }
             </div>
             <div className="w3-container w3-twothird">

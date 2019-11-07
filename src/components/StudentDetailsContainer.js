@@ -129,13 +129,6 @@ class StudentDetailsContainer extends React.Component {
     // console.log("From event update container", this.props.student.id, this.state.formValues)
   }
 
-  ckeckColor = (color) => {
-    return console.log(color)
-    // if (color = "red") {
-    //   return <div style={{ backgroundColor: "#FF0000", width: "2%" }}></div>
-    // }
-  }
-
   render() {
     return (
       <div>
@@ -151,9 +144,6 @@ class StudentDetailsContainer extends React.Component {
           onEdit={this.onEdit}
           onEditChange={this.onEditChange}
           onEditSubmit={this.onEditSubmit}
-
-          //checkColor
-          ckeckColor={this.ckeckColor}
         />
       </div>
     );

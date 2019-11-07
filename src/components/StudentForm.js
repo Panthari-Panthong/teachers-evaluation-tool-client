@@ -29,11 +29,11 @@ function StudentForm(props) {
           </div>
           <form onSubmit={props.onEditSubmit}>
             <label>Firstname</label>
-            <input className="w3-input" value={value.first_name} name="first_name" onChange={props.onEditChange} />
+            <input className="w3-input" defaultValue={value.first_name} name="first_name" onChange={props.onEditChange} />
             <label>Lastname</label>
-            <input className="w3-input" value={value.last_name} name="last_name" onChange={props.onEditChange} />
+            <input className="w3-input" defaultValue={value.last_name} name="last_name" onChange={props.onEditChange} />
             <label>Picture</label>
-            <input className="w3-input" value={value.picture} name="picture" onChange={props.onEditChange} />
+            <input className="w3-input" defaultValue={value.picture} name="picture" onChange={props.onEditChange} />
             <br />
             <input className="w3-btn w3-blue-grey" type="submit" />
           </form>
