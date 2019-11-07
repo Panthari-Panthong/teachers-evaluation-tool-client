@@ -19,7 +19,7 @@ class StudentDetailsContainer extends React.Component {
 
   onDelete = async () => {
     this.props.deleteStudent(this.props.student.id)
-    await this.props.history.push(`/batches/${this.props.batch.id}`)
+    await this.props.history.push(`/batch/${this.props.batch.id}/students`)
   }
 
   onEdit = () => {
@@ -105,7 +105,7 @@ class StudentDetailsContainer extends React.Component {
     this.setState({
       remark: ''
     })
-    this.props.history.push(`/batches/${this.props.batch.id}`)
+    this.props.history.push(`/batch/${this.props.batch.id}/students`)
   }
 
 

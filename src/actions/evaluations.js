@@ -2,10 +2,13 @@ import request from "superagent";
 import { url } from '../constants'
 
 
-export const createEvaluation = (data) => (dispatch) => {
+export const createEvaluation = (data) => (dispatch, getState) => {
   // console.log("DATA", data)
+  const token = getState().auth;
+
   request
     .post(`${url}/evaluations`)
+    .set("Authorization", `Bearer ${token}`)
     .send(data)
     .then(response => {
       dispatch(evaluationCreateSuccess(response.body))

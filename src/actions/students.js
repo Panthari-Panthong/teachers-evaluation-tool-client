@@ -10,11 +10,11 @@ const studentCreateSuccess = student => ({
 
 export const createStudent = data => (dispatch, getState) => {
   // console.log("STUDENT", data)
-  // const token = getState().auth;
+  const token = getState().auth;
 
   request
     .post(`${url}/students`)
-    // .set("Authorization", `Bearer ${token}`)
+    .set("Authorization", `Bearer ${token}`)
     .send(data)
     .then(response => {
       dispatch(studentCreateSuccess(response.body));
@@ -39,10 +39,14 @@ export const loadStudent = id => (dispatch, getState) => {
 };
 
 
-export const deleteStudent = (id) => (dispatch) => {
-  console.log("ID from Delete function", id)
+export const deleteStudent = (id) => (dispatch, getState) => {
+  // console.log("STUDENT", data)
+  const token = getState().auth;
+  // console.log("TOKEN from Delete function", token)
+
   request
     .delete(`${url}/students/${id}`)
+    .set("Authorization", `Bearer ${token}`)
     .then(response => {
       dispatch(studentDelete(id))
     })
@@ -58,13 +62,15 @@ const studentDelete = id => ({
 
 
 
-export const updateStudent = (id, data) => (dispatch) => {
-  console.log("ID", id, data)
+export const updateStudent = (id, data) => (dispatch, getState) => {
+  // console.log("ID", id, data)
+  const token = getState().auth;
   request
     .put(`${url}/students/${id}`)
+    .set("Authorization", `Bearer ${token}`)
     .send(data)
     .then(response => {
-      console.log("updateStudent", response.body)
+      // console.log("updateStudent", response.body)
       dispatch(studentUpdate(response.body))
     })
     .catch(console.error)
