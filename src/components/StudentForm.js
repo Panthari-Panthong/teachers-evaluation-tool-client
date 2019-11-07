@@ -1,7 +1,7 @@
 import React from 'react';
 
 function StudentForm(props) {
-  console.log("PROPS", props)
+  // console.log("PROPS", props)
   const value = props.values
 
   return (

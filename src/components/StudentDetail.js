@@ -1,5 +1,8 @@
 import React from 'react';
 import StudentForm from './StudentForm'
+import red from '../img/red.png'
+import green from '../img/green.png'
+import yellow from '../img/yellow.png'
 
 function StudentDetail(props) {
   if (!props.student) return "Loading";
@@ -25,7 +28,17 @@ function StudentDetail(props) {
             <div className="w3-container w3-twothird">
               <h1>{props.student.first_name}  {props.student.last_name}</h1>
               <h3>Batch # {props.student.batch.batch_number}</h3>
-              <h3>{props.student.evaluations.map(evaluation => evaluation.color)}</h3>
+              {/* <h3>{props.student.evaluations.map(evaluation => evaluation.color)}</h3> */}
+              {props.student.evaluations.map(evaluation => {
+                if (evaluation.color === "red") {
+                  return <img src={red} alt="red" key={evaluation.id} style={{ width: "7%" }} />
+                } else if (evaluation.color === "green") {
+                  return <img src={green} alt="green" key={evaluation.id} style={{ width: "7%" }} />
+                } else if (evaluation.color === "yellow") {
+                  return <img src={yellow} alt="yellow" key={evaluation.id} style={{ width: "7%" }} />
+                }
+                return evaluation
+              })}
             </div>
           </div>
           <button onClick={props.onDelete}>DELETE</button>
