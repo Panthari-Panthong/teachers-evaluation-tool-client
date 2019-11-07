@@ -74,10 +74,10 @@ class StudentDetailsContainer extends React.Component {
       const studentsDate = this.props.student.evaluations.map(evaluation => evaluation.date)
       const lastEvalutionDate = studentsDate[studentsDate.length - 1]
       if (this.state.date === lastEvalutionDate) {
-        console.log("evalutionDate", lastEvalutionDate, this.state.date)
+        // console.log("evalutionDate", lastEvalutionDate, this.state.date)
         return null
       } else {
-        console.log("evalutionDate", lastEvalutionDate, this.state.date)
+        // console.log("evalutionDate", lastEvalutionDate, this.state.date)
         if (this.state.color === "green") {
           this.props.createEvaluation({
             remark: this.state.remark,
