@@ -74,7 +74,7 @@ function BatchDetails(props) {
       <div className="w3-row-padding w3-margin-top w3-center">
         {props.batch.students.map(student => {
           return (
-            <div key={student.id} className="w3-third">
+            <div key={student.id} className="w3-quarter">
               <div className="w3-card">
                 <h3>
                   <Link to={`/students/${student.id}`}>{student.first_name} {student.last_name} </Link>

@@ -1,4 +1,4 @@
-import { FETCH_BATCH_SUCCESS } from "../actions/batches";
+import { FETCH_BATCH_SUCCESS, BATCH_CREATE_SUCCESS } from "../actions/batches";
 import { STUDENT_CREATE_SUCCESS, STUDENT_DELETE_SUCCESS, STUDENT_UPDATE_SUCCESS } from '../actions/students'
 import { EVALUATION_CREATE_SUCCESS } from '../actions/evaluations'
 
@@ -7,6 +7,8 @@ export default (state = {}, action = {}) => {
   switch (action.type) {
     case FETCH_BATCH_SUCCESS:
       return { ...action.payload };
+    case BATCH_CREATE_SUCCESS:
+      return { ...action.payload, students: [] };
     case STUDENT_CREATE_SUCCESS:
       return {
         ...state,
