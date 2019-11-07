@@ -109,6 +109,80 @@ class StudentDetailsContainer extends React.Component {
   }
 
 
+  saveAndnext = (event) => {
+    event.preventDefault()
+    if (this.props.student.evaluations.length === 0) {
+      if (this.state.color === "green") {
+        this.props.createEvaluation({
+          remark: this.state.remark,
+          date: this.state.date,
+          color: this.state.color,
+          studentId: this.props.student.id
+        })
+      } else if (this.state.color === "yellow" || this.state.color === "red") {
+        if (this.state.remark !== "") {
+          this.props.createEvaluation({
+            remark: this.state.remark,
+            date: this.state.date,
+            color: this.state.color,
+            studentId: this.props.student.id
+          })
+        } else {
+          return null
+        }
+      } else {
+        return null
+      }
+    } else if (this.state.date) {
+      const studentsDate = this.props.student.evaluations.map(evaluation => evaluation.date)
+      const lastEvalutionDate = studentsDate[studentsDate.length - 1]
+      if (this.state.date === lastEvalutionDate) {
+        console.log("evalutionDate", lastEvalutionDate, this.state.date)
+        return null
+      } else {
+        console.log("evalutionDate", lastEvalutionDate, this.state.date)
+        if (this.state.color === "green") {
+          this.props.createEvaluation({
+            remark: this.state.remark,
+            date: this.state.date,
+            color: this.state.color,
+            studentId: this.props.student.id
+          })
+        } else if (this.state.color === "yellow" || this.state.color === "red") {
+          if (this.state.remark !== "") {
+            this.props.createEvaluation({
+              remark: this.state.remark,
+              date: this.state.date,
+              color: this.state.color,
+              studentId: this.props.student.id
+            })
+          } else {
+            return null
+          }
+        } else {
+          return null
+        }
+      }
+    }
+
+    const allStudentId = this.props.batch.students.map(student => student.id)
+    const currentStudent = this.props.student.id
+    const nextStudentId = allStudentId.indexOf(currentStudent)
+    const nextIndex = (nextStudentId + 1) % allStudentId.length;
+    const nextStudent = allStudentId[nextIndex];
+    console.log("TIME", currentStudent, allStudentId, nextStudentId, nextIndex, nextStudent)
+    this.setState({
+      remark: ''
+    })
+    this.props.loadStudent(`${nextStudent}`);
+    this.props.history.push(`/batch/${this.props.batch.id}/students/${nextStudent}`)
+  }
+
+  cancel = (event) => {
+    event.preventDefault()
+    this.props.history.push(`/batch/${this.props.batch.id}/students`)
+  }
+
   onEditChange = (event) => {
     // update the formValues property with the new data from the input field
     // console.log("EDIT CHANGE", event.target.value)
@@ -138,6 +212,8 @@ class StudentDetailsContainer extends React.Component {
           value={this.state}
           onSubmitEva={this.onSubmitEva}
           onChange={this.onChange}
+          saveAndnext={this.saveAndnext}
+          cancel={this.cancel}
           //Edit button
           formValues={this.state.formValues}
           editMode={this.state.editMode}

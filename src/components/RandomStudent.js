@@ -24,7 +24,7 @@ class RandomStudent extends Component {
   }
 
   profileStudent = (id) => {
-    this.props.history.push(`/students/${id}`)
+    this.props.history.push(`/batch/${this.props.batch.id}/students/${id}`)
   }
 
   render() {
@@ -39,10 +39,10 @@ class RandomStudent extends Component {
 }
 
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return {
-
-  };
+    batch: state.batch
+  }
 }
 
 export default withRouter(connect(

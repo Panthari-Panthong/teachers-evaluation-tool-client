@@ -58,7 +58,9 @@ function StudentDetail(props) {
                 </div>
                 <div className="w3-container w3-threequarter">
                   <textarea rows="4" cols="50" className="w3-input w3-border" style={{ width: "50%" }} placeholder="Remarks..." name="remark" value={props.value.remark} onChange={props.onChange} />
-                  <input className="w3-btn w3-blue-grey" type="submit" value="Save" />
+                  <input className="w3-btn w3-red" type="cancel" name="cancel" defaultValue="Cancel" onClick={props.cancel} />
+                  <input className="w3-btn w3-green" type="submit" value="Save" />
+                  <input className="w3-btn w3-blue-grey" type="submit" value="Save and Next >>" onClick={props.saveAndnext} />
                 </div>
               </form>
             </div>
