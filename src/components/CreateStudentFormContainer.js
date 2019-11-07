@@ -11,6 +11,7 @@ class CreateStudentFormContainer extends React.Component {
   };
 
   onChange = event => {
+    console.log("ONChange")
     this.setState({
       [event.target.name]: event.target.value
     });

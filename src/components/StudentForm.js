@@ -1,12 +1,12 @@
 import React from 'react';
 
 function StudentForm(props) {
-  // console.log("PROPS", props)
+  // console.log("PROPS", props.values)
   const value = props.values
 
   return (
     <div className="w3-container">
-      {!value ?
+      {!props.editMode ?
         <div>
           <div className="w3-container w3-blue-grey">
             <h1>Add student</h1>

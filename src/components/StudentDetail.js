@@ -14,7 +14,7 @@ function StudentDetail(props) {
 
   return (
     <div>
-      {editMode && <StudentForm values={props.formValues} onEditChange={props.onEditChange} onEditSubmit={props.onEditSubmit} />}
+      {editMode && <StudentForm editMode={props.editMode} values={props.formValues} onEditChange={props.onEditChange} onEditSubmit={props.onEditSubmit} />}
       {!editMode &&
         <div className="w3-container w3-margin">
           <div className="w3-row">
@@ -24,6 +24,10 @@ function StudentDetail(props) {
                 :
                 <img src={`${props.student.picture}`} alt={props.student.first_name} style={{ width: "80%" }} />
               }
+              <div className="w3-bar" style={{ width: "80%" }}>
+                <button className="w3-button w3-ripple w3-red" style={{ width: "50%" }} onClick={props.onDelete}>DELETE</button>
+                <button className="w3-button w3-ripple w3-blue-grey" style={{ width: "50%" }} onClick={props.onEdit}>EDIT</button>
+              </div>
             </div>
             <div className="w3-container w3-twothird">
               <h1>{props.student.first_name}  {props.student.last_name}</h1>
@@ -41,16 +45,22 @@ function StudentDetail(props) {
               })}
             </div>
           </div>
-          <button onClick={props.onDelete}>DELETE</button>
-          <button onClick={props.onEdit}>EDIT</button>
           <p>Daily Evaluation for {props.value.date}</p>
-          <form onSubmit={props.onSubmitEva} >
-            <textarea placeholder="Remarks..." name="remark" value={props.value.remark} onChange={props.onChange} />
-            <input type="radio" name="color" value="red" onChange={props.onChange} />RED
-            <input type="radio" name="color" value="yellow" onChange={props.onChange} />YELLOW
-            <input type="radio" name="color" value="green" onChange={props.onChange} />GREEN
-            <input type="submit" value="Save" />
-          </form>
+          <div className="w3-row">
+            <form onSubmit={props.onSubmitEva} >
+              <div className="w3-container w3-quarter">
+                <div className="w3-bar-block">
+                  <input className="w3-bar-item" type="radio" name="color" value="red" onChange={props.onChange} /><label>RED</label>
+                  <input className="w3-bar-item" type="radio" name="color" value="yellow" onChange={props.onChange} />YELLOW
+                  <input className="w3-bar-item" type="radio" name="color" value="green" onChange={props.onChange} />GREEN
+                </div>
+              </div>
+              <div className="w3-container w3-threequarter">
+                <textarea className="w3-input w3-border" placeholder="Remarks..." name="remark" value={props.value.remark} onChange={props.onChange} />
+                <input className="w3-btn w3-blue-grey w3-right" type="submit" value="Save" />
+              </div>
+            </form>
+          </div>
         </div>
       }
     </div>
