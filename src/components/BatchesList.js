@@ -11,7 +11,7 @@ export default function BatchesList(props) {
           <div key={batch.id} className="w3-quarter w3-margin-bottom">
             <ul className="w3-ul w3-border w3-center w3-hover-shadow">
               <li className="w3-blue-grey w3-xlarge w3-padding-32">
-                <Link to={`/batches/${batch.id}`}>Batch #{batch.batch_number}</Link>
+                <Link to={`/batch/${batch.id}/students`}>Batch #{batch.batch_number}</Link>
               </li>
               {!batch.students ? <li className="w3-padding-16">0 Student</li> : <li className="w3-padding-16">{Object.keys(batch.students).length} Students</li>}
 

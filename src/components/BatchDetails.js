@@ -77,7 +77,7 @@ function BatchDetails(props) {
             <div key={student.id} className="w3-quarter">
               <div className="w3-card">
                 <h3>
-                  <Link to={`/students/${student.id}`}>{student.first_name} {student.last_name} </Link>
+                  <Link to={`/batch/${props.batch.batch_number}/students/${student.id}`}>{student.first_name} {student.last_name} </Link>
                 </h3>
                 {!student.picture ?
                   <img src={"https://www.w3schools.com/howto/img_avatar.png"} alt={student.first_name} style={{ width: "50%" }} />

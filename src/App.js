@@ -23,8 +23,8 @@ class App extends Component {
         <header className="App-header">
           <Route path="/" exact component={LoginFormContainer} />
           <Route path="/batches" exact component={BatchesListContainer} />
-          <Route path="/batches/:id" exact component={BatchDetailsContainer} />
-          <Route path="/students/:id" exact component={StudentDetailsContainer} />
+          <Route path="/batch/:id/students" exact component={BatchDetailsContainer} />
+          <Route path="/batch/:id/students/:id" exact component={StudentDetailsContainer} />
           <Route path="/signout" component={SignoutContainer} />
           <Route path="/signup" component={SignupFormContainer} />
         </header>

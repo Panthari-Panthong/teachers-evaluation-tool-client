@@ -105,7 +105,7 @@ class StudentDetailsContainer extends React.Component {
     this.setState({
       remark: ''
     })
-
+    this.props.history.push(`/batches/${this.props.batch.id}`)
   }
 
 
