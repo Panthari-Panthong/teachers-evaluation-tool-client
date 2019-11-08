@@ -8,7 +8,7 @@ class StudentDetailsContainer extends React.Component {
   state = {
     remark: "",
     date: new Date().toJSON().slice(0, 10).replace(/-/g, '-'),
-    color: "",
+    color: false,
     editMode: false
   }
 
@@ -102,80 +102,83 @@ class StudentDetailsContainer extends React.Component {
       }
     }
 
+    // this.props.history.push(`/batch/${this.props.batch.id}/students`)
     this.setState({
-      remark: ''
+      remark: '',
+      color: false
     })
-    this.props.history.push(`/batch/${this.props.batch.id}/students`)
   }
 
 
-  saveAndnext = (event) => {
+  saveAndnext = async (event) => {
     event.preventDefault()
-    if (this.props.student.evaluations.length === 0) {
-      if (this.state.color === "green") {
-        this.props.createEvaluation({
-          remark: this.state.remark,
-          date: this.state.date,
-          color: this.state.color,
-          studentId: this.props.student.id
-        })
-      } else if (this.state.color === "yellow" || this.state.color === "red") {
-        if (this.state.remark !== "") {
-          this.props.createEvaluation({
-            remark: this.state.remark,
-            date: this.state.date,
-            color: this.state.color,
-            studentId: this.props.student.id
-          })
-        } else {
-          return null
-        }
-      } else {
-        return null
-      }
-    } else if (this.state.date) {
-      const studentsDate = this.props.student.evaluations.map(evaluation => evaluation.date)
-      const lastEvalutionDate = studentsDate[studentsDate.length - 1]
-      if (this.state.date === lastEvalutionDate) {
-        console.log("evalutionDate", lastEvalutionDate, this.state.date)
-        return null
-      } else {
-        console.log("evalutionDate", lastEvalutionDate, this.state.date)
-        if (this.state.color === "green") {
-          this.props.createEvaluation({
-            remark: this.state.remark,
-            date: this.state.date,
-            color: this.state.color,
-            studentId: this.props.student.id
-          })
-        } else if (this.state.color === "yellow" || this.state.color === "red") {
-          if (this.state.remark !== "") {
-            this.props.createEvaluation({
-              remark: this.state.remark,
-              date: this.state.date,
-              color: this.state.color,
-              studentId: this.props.student.id
-            })
-          } else {
-            return null
-          }
-        } else {
-          return null
-        }
-      }
-    }
+    // if (this.props.student.evaluations.length === 0) {
+    //   if (this.state.color === "green") {
+    //     this.props.createEvaluation({
+    //       remark: this.state.remark,
+    //       date: this.state.date,
+    //       color: this.state.color,
+    //       studentId: this.props.student.id
+    //     })
+    //   } else if (this.state.color === "yellow" || this.state.color === "red") {
+    //     if (this.state.remark !== "") {
+    //       this.props.createEvaluation({
+    //         remark: this.state.remark,
+    //         date: this.state.date,
+    //         color: this.state.color,
+    //         studentId: this.props.student.id
+    //       })
+    //     } else {
+    //       return null
+    //     }
+    //   } else {
+    //     return null
+    //   }
+    // } else if (this.state.date) {
+    //   const studentsDate = this.props.student.evaluations.map(evaluation => evaluation.date)
+    //   const lastEvalutionDate = studentsDate[studentsDate.length - 1]
+    //   if (this.state.date === lastEvalutionDate) {
+    //     console.log("evalutionDate", lastEvalutionDate, this.state.date)
+    //     return null
+    //   } else {
+    //     // console.log("evalutionDate", lastEvalutionDate, this.state.date)
+    //     if (this.state.color === "green") {
+    //       this.props.createEvaluation({
+    //         remark: this.state.remark,
+    //         date: this.state.date,
+    //         color: this.state.color,
+    //         studentId: this.props.student.id
+    //       })
+    //     } else if (this.state.color === "yellow" || this.state.color === "red") {
+    //       if (this.state.remark !== "") {
+    //         this.props.createEvaluation({
+    //           remark: this.state.remark,
+    //           date: this.state.date,
+    //           color: this.state.color,
+    //           studentId: this.props.student.id
+    //         })
+    //       } else {
+    //         return null
+    //       }
+    //     } else {
+    //       return null
+    //     }
+    //   }
+    // }
 
     const allStudentId = this.props.batch.students.map(student => student.id)
     const currentStudent = this.props.student.id
     const nextStudentId = allStudentId.indexOf(currentStudent)
     const nextIndex = (nextStudentId + 1) % allStudentId.length;
     const nextStudent = allStudentId[nextIndex];
-    console.log("TIME", currentStudent, allStudentId, nextStudentId, nextIndex, nextStudent)
+    // // console.log("TIME", currentStudent, allStudentId, nextStudentId, nextIndex, nextStudent)
+    await this.props.loadStudent(`${nextStudent}`);
+    await this.props.history.push(`/batch/${this.props.batch.id}/students/${nextStudent}`)
+
     this.setState({
-      remark: ''
+      remark: '',
+      color: false
     })
-    this.props.loadStudent(`${nextStudent}`);
-    this.props.history.push(`/batch/${this.props.batch.id}/students/${nextStudent}`)
   }
 
   cancel = (event) => {
