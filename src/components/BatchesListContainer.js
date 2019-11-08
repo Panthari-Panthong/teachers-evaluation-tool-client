@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadbatches } from '../actions/batches'
-import BatchesList from '../components/BatchesList'
+import BatchesList from './BatchesList'
+import CreateBatchFormContainer from './CreateBatchFormContainer'
 
 
 class BatchesListContainer extends Component {
@@ -10,7 +11,10 @@ class BatchesListContainer extends Component {
   }
   render() {
     return (
-      <BatchesList batches={this.props.batches} />
+      <div>
+        <BatchesList batches={this.props.batches} />
+        <CreateBatchFormContainer />
+      </div>
     );
   }
 }

@@ -26,10 +26,47 @@ const fetchBatchSuccess = batch => ({
   payload: batch
 });
 
+
+export const FETCH_STUDENTS_SUCCESS = "FETCH_STUDENTS_SUCCESS";
+const fetchStudentsSuccess = students => ({
+  type: FETCH_STUDENTS_SUCCESS,
+  payload: students
+});
+
 export const loadBatch = id => (dispatch, getState) => {
-  console.log("CAN WE GET THE STATE??", getState());
+  // console.log("CAN WE GET THE STATE??", getState());
   request(`${url}/batches/${id}`).then(response => {
-    console.log(response);
+    // const student = response.body.students.map(student => student.evaluations.sort((a, b) => b.id - a.id));
+    // let lastcolor = student[0];
+    // console.log("STUDENT", lastcolor)
+    // console.log(response.body.students)
     dispatch(fetchBatchSuccess(response.body));
+    dispatch(fetchStudentsSuccess(response.body.students));
   });
+};
+
+
+
+
+
+//create batch
+
+export const BATCH_CREATE_SUCCESS = "BATCH_CREATE_SUCCESS";
+
+const batchCreateSuccess = batch => ({
+  type: BATCH_CREATE_SUCCESS,
+  payload: batch
+});
+
+export const createBatch = data => (dispatch, getState) => {
+  const token = getState().auth;
+  // console.log("TOKEN", token)
+  request
+    .post(`${url}/batches`)
+    .set("Authorization", `Bearer ${token}`)
+    .send(data)
+    .then(response => {
+      dispatch(batchCreateSuccess(response.body));
+    })
+    .catch(console.error);
 };
