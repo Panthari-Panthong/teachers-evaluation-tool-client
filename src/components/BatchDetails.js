@@ -13,8 +13,8 @@ function BatchDetails(props) {
   const students = props.batch.students.map(student => {
     if (student.evaluations.length > 0)
       return {
-        evaluation: student.evaluations.sort((a, b) => {
-          return a.id - b.id
+        evaluation: student.evaluations.sort((current, next) => {
+          return current.id - next.id
         })[student.evaluations.length - 1],
         student: student.id
       };

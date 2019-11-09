@@ -71,12 +71,16 @@ class StudentDetailsContainer extends React.Component {
         return null
       }
     } else if (this.state.date) {
+      //get the all evaluation of that student
       const studentsDate = this.props.student.evaluations.map(evaluation => evaluation.date)
+      //get the last evalution
       const lastEvalutionDate = studentsDate[studentsDate.length - 1]
+      //check if this.state.date = last evalution if yes return null
       if (this.state.date === lastEvalutionDate) {
         // console.log("evalutionDate", lastEvalutionDate, this.state.date)
         return null
       } else {
+        //Check the mark color if it's green you can comment without remark
         // console.log("evalutionDate", lastEvalutionDate, this.state.date)
         if (this.state.color === "green") {
           this.props.createEvaluation({
@@ -85,6 +89,7 @@ class StudentDetailsContainer extends React.Component {
             color: this.state.color,
             studentId: this.props.student.id
           })
+          //Check if remark is yellow or red cannot let the remark empty
         } else if (this.state.color === "yellow" || this.state.color === "red") {
           if (this.state.remark !== "") {
             this.props.createEvaluation({
@@ -166,8 +171,10 @@ class StudentDetailsContainer extends React.Component {
     //   }
     // }
 
+    //get all students id in that batch
     const allStudentId = this.props.batch.students.map(student => student.id)
     const currentStudent = this.props.student.id
+    //get the next student
     const nextStudentId = allStudentId.indexOf(currentStudent)
     const nextIndex = (nextStudentId + 1) % allStudentId.length;
     const nextStudent = allStudentId[nextIndex];
