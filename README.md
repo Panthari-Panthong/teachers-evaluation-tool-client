@@ -47,7 +47,7 @@ YELLOW students ~33%, and GREEN students ~17%.
 
 #### Back-end 
 
-For the Back-end of this project, check out **[this repository.](https://github.com/Panthari-Panthong/Technical-assignment-server)**
+For the Back-end check out **[this repository.](https://github.com/Panthari-Panthong/Technical-assignment-server)**
 
 - Express
 - Postgres
